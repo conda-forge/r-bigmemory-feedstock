@@ -1,4 +1,4 @@
-{% set version = '4.5.19' %}
+{% set version = '4.5.33' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,12 +12,11 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/bigmemory_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/bigmemory/bigmemory_{{ version }}.tar.gz
-  sha256: e655feffb4e1111b215ad8d8d88a3cf962efb609e7e956cfbcf394a2d85f2fa4
+  sha256: 7237d9785d8ce3eab4e36ad3ce2c95cbae926326031661b4f237b7517f4b9479
 
 build:
   number: 0
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
@@ -57,3 +56,5 @@ extra:
     - johanneskoester
     - bgruening
     - daler
+    - jdblischak
+    - cbrueffer
