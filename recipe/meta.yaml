@@ -1,5 +1,4 @@
 {% set version = '4.5.33' %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,13 +9,13 @@ package:
 source:
   fn: bigmemory_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/bigmemory_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/bigmemory/bigmemory_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/bigmemory_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/bigmemory/bigmemory_{{ version }}.tar.gz
   sha256: 7237d9785d8ce3eab4e36ad3ce2c95cbae926326031661b4f237b7517f4b9479
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 2
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -24,30 +23,38 @@ build:
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('cxx') }}        # [unix]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}grep              # [win]
+    - {{posix}}autoconf
+    - {{posix}}automake          # [not win]
+    - {{posix}}automake-wrapper  # [win]
+    - {{posix}}pkg-config
+    - {{posix}}make
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-bh
     - r-rcpp
     - r-bigmemory.sri
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-bh
     - r-rcpp
     - r-bigmemory.sri
 
 test:
   commands:
-    - $R -e "library('bigmemory')"  # [not win]
+    - $R -e "library('bigmemory')"           # [not win]
     - "\"%R%\" -e \"library('bigmemory')\""  # [win]
 
 about:
-  home: http://www.bigmemory.org
+  home: https://github.com/kaneplusplus/bigmemory
   license: LGPL-3 | Apache 2.0
   summary: Create, store, access, and manipulate massive matrices. Matrices are allocated to
     shared memory and may use memory-mapped files.  Packages 'biganalytics', 'bigtabulate',
@@ -61,3 +68,4 @@ extra:
     - daler
     - jdblischak
     - cbrueffer
+    - dbast
