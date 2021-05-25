@@ -54,7 +54,7 @@ test:
 
 about:
   home: https://github.com/kaneplusplus/bigmemory
-  license: LGPL-3 | Apache 2.0
+  license: LGPL-3.0-only OR Apache-2.0
   summary: Create, store, access, and manipulate massive matrices. Matrices are allocated to
     shared memory and may use memory-mapped files.  Packages 'biganalytics', 'bigtabulate',
     'synchronicity', and 'bigalgebra' provide advanced functionality.
