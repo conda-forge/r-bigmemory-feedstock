@@ -3,7 +3,7 @@ About r-bigmemory
 
 Home: https://github.com/kaneplusplus/bigmemory
 
-Package license: LGPL-3 | Apache 2.0
+Package license: LGPL-3.0-only OR Apache-2.0
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-bigmemory-feedstock/blob/master/LICENSE.txt)
 
