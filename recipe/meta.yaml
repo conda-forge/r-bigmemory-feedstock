@@ -35,17 +35,20 @@ requirements:
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-bh
     - r-rcpp
     - r-bigmemory.sri
+    - r-uuid >=1.0_2
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
-    - r-bh
+    #- r-bh
     - r-rcpp
     - r-bigmemory.sri
+    - r-uuid >=1.0_2
 
 test:
   commands:
