@@ -1,4 +1,4 @@
-{% set version = "4.6.0" %}
+{% set version = "4.6.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/bigmemory_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/bigmemory/bigmemory_{{ version }}.tar.gz
-  sha256: ef7c541c20d55e46eb42615deb0bc1b8afe16724dbc10048d326de0faa34d619
+  sha256: b56e157c87ed6c4fc69d4cb9c697ae9a2001726e776e41aa7c48b35327b65141
 
 build:
   merge_build_host: true  # [win]
